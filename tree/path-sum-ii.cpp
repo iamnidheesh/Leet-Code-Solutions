@@ -9,37 +9,37 @@
  */
 class Solution {
 public:
-	vector <string> v;
+	vector <vector <int> > v;
 	vector <int> temp;
-	void makeVector() {
-		string s = "";
-		for(auto i = 0;i < temp.size()-1;i++ ) {
-			s += to_string(temp[i]) + "->";
+	void makeVector(int sum) {
+		int s = 0;
+		for(auto i = 0;i < temp.size();i++ ) {
+			s += temp[i];
 		}
-		s += to_string(temp[temp.size()-1]);
-		v.push_back(s);
+		if(s == sum)
+			v.push_back(temp);
 	}
-	void makePath(TreeNode * root) {
+	void makePath(TreeNode * root,int sum) {
 		if(root->left == NULL && root->right == NULL) {
 			temp.push_back(root->val);
-			makeVector();
+			makeVector(sum);
 			temp.pop_back();
 		}
 		temp.push_back(root->val);
 		if(root->left != NULL) {
-			makePath(root->left);
+			makePath(root->left,sum);
 		}
 		if(root->right != NULL) {
-			makePath(root->right);
+			makePath(root->right,sum);
 		}
 		temp.pop_back();
 		
 	}
-    vector<string> binaryTreePaths(TreeNode* root) {
+    vector<vector <int> > pathSum(TreeNode* root,int sum) {
         
         if(root == NULL)
         	return v;
-        makePath(root);
+        makePath(root,sum);
         return v;
     }
 };
