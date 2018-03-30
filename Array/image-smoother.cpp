@@ -9,16 +9,16 @@ public:
         }
         for(int i = 0;i < backup.size();i++)
         	for(int j = 0;j < backup[0].size();j++) {
-        		int sum = M[i][j],ct = 1;
-        		for(int k = 0;k < 8;k++)
-        			for(int l = 0;l < 8;l++) {
-        				int r = i+row[k],c = j+col[l];
-        				if(r >= 0 && r < backup.size()
-        				&& c >= 0 && c < backup[0].size()) {
-        					sum += backup[r][c];
-                            ct++;
-                        }
-        			}
+        		int sum = backup[i][j],ct = 1;
+        		for(int k = 0;k < 8;k++) {
+        			
+                    int r = i+row[k],c = j+col[k];
+                    if(r >= 0 && r < backup.size()
+                    && c >= 0 && c < backup[0].size()) {
+                        sum += backup[r][c];
+                        ct++;
+                    }
+                }
         		M[i][j] = sum/ct;
         	}
     return M;
