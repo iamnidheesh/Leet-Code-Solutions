@@ -59,8 +59,6 @@ public:
     	}
     	if(carry == 1)
     		ans += '1';
-    	else
-    		ans += '0';
     	reverse(ans.begin(),ans.end());
     	return ans;
     }
